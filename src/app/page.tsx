@@ -41,6 +41,11 @@ export default function JnaDentalPage() {
     await new Promise((r) => setTimeout(r, 600));
     setSubmitting(false);
 
+    // Fire FB Pixel Lead event on form submit
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Lead");
+    }
+
     if (budget === "under-1000") {
       setStep("waitlist");
     } else {
